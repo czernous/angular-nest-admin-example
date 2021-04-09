@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$admin-theme-primary: mat-palette($mat-purple-pink);
+$admin-theme-accent: mat-palette($mat-teal, A200, A100);
+$admin-theme-warn: mat-palette($mat-deep-orange);
+
+$admin-theme: mat-light-theme(
+  $admin-theme-primary,
+  $admin-theme-accent,
+  $admin-theme-warn
+);
+
+@include angular-material-theme($admin-theme);

@@ -1,0 +1,43 @@
+@import '../../../variables';
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: lighten($color: $nav-bar-text, $amount: 6);
+}
+.user-section {
+  position: absolute;
+  right: 6%;
+  display: flex;
+  align-items: center;
+  .profile-link {
+    text-decoration: none;
+    color: lighten($color: $nav-bar-text, $amount: 6);
+    margin-left: 1rem;
+    font-size: 1rem;
+    transition: 0.5s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.65;
+    }
+  }
+}
+
+.mat-nav-list a.active {
+  background: lighten($color: $nav-links-active, $amount: 3.5);
+}

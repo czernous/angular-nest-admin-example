@@ -1,0 +1,84 @@
+<mat-card class="register-card">
+  <mat-card-title>Enter your details</mat-card-title>
+  <mat-card-content>
+    <mat-error *ngIf="this.hasHttpError"
+      >Error: {{ httpErrorMessage }}</mat-error
+    >
+  </mat-card-content>
+  <mat-card-content>
+    <form [formGroup]="registerForm" (submit)="submit()">
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="First name"
+            formControlName="first_name"
+          />
+          <mat-error *ngIf="registerForm.controls.first_name.invalid">{{
+            getFirstNameErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Last name"
+            formControlName="last_name"
+          />
+          <mat-error *ngIf="registerForm.controls.last_name.invalid">{{
+            getLastNameErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input
+            type="email"
+            matInput
+            placeholder="Email"
+            formControlName="email"
+          />
+          <mat-error *ngIf="registerForm.controls.email.invalid">{{
+            getEmailErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input
+            type="password"
+            matInput
+            placeholder="Password"
+            formControlName="password"
+          />
+          <mat-error *ngIf="registerForm.controls.password.invalid">{{
+            getPasswordErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input
+            type="password"
+            matInput
+            placeholder="Confirm password"
+            formControlName="password_confirm"
+          />
+          <mat-error
+            *ngIf="this.registerForm.controls.password_confirm.invalid"
+            >{{ getPasswordErrorMessage() }}</mat-error
+          >
+        </mat-form-field>
+      </p>
+      <div class="button">
+        <button type="submit" mat-raised-button color="primary">
+          Register
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<app-loader *ngIf="isLoading"></app-loader>

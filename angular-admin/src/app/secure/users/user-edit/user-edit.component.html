@@ -1,0 +1,70 @@
+<mat-card class="register-card">
+  <mat-card-title>Enter user details</mat-card-title>
+  <mat-card-content>
+    <mat-error *ngIf="this.hasHttpError">{{ httpErrorMessage }}</mat-error>
+  </mat-card-content>
+  <mat-card-content>
+    <form [formGroup]="userEditForm" (ngSubmit)="submit()">
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="First name"
+            formControlName="first_name"
+          />
+          <mat-error *ngIf="userEditForm.controls.first_name.invalid">
+            {{ getFirstNameErrorMessage() }}</mat-error
+          >
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Last name"
+            formControlName="last_name"
+          />
+          <mat-error *ngIf="userEditForm.controls.last_name.invalid">
+            {{ getLastNameErrorMessage() }}</mat-error
+          >
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input
+            type="email"
+            matInput
+            placeholder="Email"
+            formControlName="email"
+          />
+          <mat-error *ngIf="userEditForm.controls.email.invalid">
+            {{ getEmailErrorMessage() }}</mat-error
+          >
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-select
+            type="text"
+            matInput
+            placeholder="Role"
+            formControlName="role_id"
+          >
+            <mat-option *ngFor="let role of roles" [value]="role.id">{{
+              role.name
+            }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="userEditForm.controls.role_id.hasError('required')"
+            >Enter user role</mat-error
+          >
+        </mat-form-field>
+      </p>
+      <div class="button">
+        <button type="submit" mat-raised-button color="primary">Save</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<app-loader *ngIf="isLoading"></app-loader>

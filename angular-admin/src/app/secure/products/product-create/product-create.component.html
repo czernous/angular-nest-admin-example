@@ -1,0 +1,63 @@
+<mat-card class="register-card">
+  <mat-card-title>Add new product</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="createProductForm" (submit)="submit()">
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Title"
+            formControlName="title"
+          />
+          <mat-error *ngIf="createProductForm.controls.title.invalid">
+            {{ getRequiredError() }}</mat-error
+          >
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <textarea
+            type="text"
+            matInput
+            placeholder="Description"
+            formControlName="description"
+            maxlength="255"
+          ></textarea>
+          <mat-error *ngIf="createProductForm.controls.description.invalid">
+            {{ getRequiredError() }}</mat-error
+          >
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input matInput formControlName="image" placeholder="Image" />
+          <app-upload
+            style="position: absolute; right: 0; bottom: 2px"
+            (uploaded)="createProductForm.patchValue({ image: $event })"
+          ></app-upload>
+          <mat-error *ngIf="createProductForm.controls.image.invalid">
+            {{ getRequiredError() }}</mat-error
+          >
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input
+            type="number"
+            matInput
+            placeholder="Price"
+            formControlName="price"
+          />
+          <mat-error *ngIf="createProductForm.controls.price.invalid">
+            {{ getPriceError() }}</mat-error
+          >
+        </mat-form-field>
+      </p>
+
+      <div class="button">
+        <button type="submit" mat-raised-button color="primary">Save</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

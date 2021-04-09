@@ -1,0 +1,45 @@
+<mat-card class="register-card">
+  <mat-card-title>Add a new role</mat-card-title>
+  <mat-card-content>
+    <form
+      *ngIf="permissions$ | async as permissions"
+      [formGroup]="editRoleForm"
+      (submit)="submit()"
+    >
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Role name"
+            formControlName="name"
+          />
+          <mat-error *ngIf="editRoleForm.controls.name.invalid">
+            {{ getNameErrorMessage() }}</mat-error
+          >
+        </mat-form-field>
+      </p>
+      <h4>Permissions:</h4>
+
+      <div formArrayName="permissions">
+        <p
+          *ngFor="let permission of permissions; let i = index"
+          [formGroupName]="i"
+        >
+          <mat-checkbox formControlName="value" color="primary">
+            {{ permission.name }}
+          </mat-checkbox>
+        </p>
+      </div>
+
+      <!-- <mat-error *ngIf="userCreateForm.controls.last_name.invalid">
+                {{ getLastNameErrorMessage() }}</mat-error
+              > -->
+
+      <div class="button">
+        <button type="submit" mat-raised-button color="primary">Save</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<!-- <app-loader *ngIf="!permissions"></app-loader> -->

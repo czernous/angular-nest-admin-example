@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+
+$admin-theme-primary: mat-palette($mat-purple-pink);
+$admin-theme-accent: mat-palette($mat-teal, A200, A100);
+$admin-theme-warn: mat-palette($mat-deep-orange);
+
+$primary: mat-color($admin-theme-primary);
+$accent: mat-color($admin-theme-accent);
+$warn: mat-color($admin-theme-warn);
+
+$nav-links-active: mat-color($admin-theme-primary, 50);
+$table-icons: mat-color($admin-theme-primary, 800);
+$nav-bar-text: mat-color($admin-theme-primary, A100);

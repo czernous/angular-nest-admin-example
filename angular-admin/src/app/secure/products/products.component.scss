@@ -1,0 +1,15 @@
+@import '../../../variables';
+.full-width-table {
+  width: 100%;
+}
+.mat-elevation-z8 {
+}
+
+button mat-icon {
+  color: $table-icons;
+}
+
+.table-fab {
+  margin-bottom: 1rem;
+  background: darken($color: $nav-bar-text, $amount: 5);
+}

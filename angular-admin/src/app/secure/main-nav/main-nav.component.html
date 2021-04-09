@@ -1,0 +1,52 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active"
+        >Dashboard</a
+      >
+      <a mat-list-item routerLink="/users" routerLinkActive="active">Users</a>
+      <a mat-list-item routerLink="/roles" routerLinkActive="active">Roles</a>
+      <a mat-list-item routerLink="/products" routerLinkActive="active"
+        >Products</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>angular-admin</span>
+
+      <span class="user-section" *ngIf="user$ | async as user">
+        <a class="profile-link" routerLink="/profile"
+          >{{ user.first_name }} {{ user.last_name }}</a
+        >
+        <a class="profile-link" routerLink="/login" (click)="logoutUser()"
+          ><mat-icon
+            class="nav-icon"
+            aria-hidden="false"
+            aria-label="Logout Icon"
+            >logout</mat-icon
+          ></a
+        >
+      </span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

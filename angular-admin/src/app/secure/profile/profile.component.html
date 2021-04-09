@@ -1,0 +1,92 @@
+<mat-card class="register-card" *ngIf="userInfo$ | async as userInfo">
+  <mat-card-title>Edit your details</mat-card-title>
+  <mat-card-content>
+    <mat-error *ngIf="this.hasHttpError"
+      >Error: {{ httpErrorMessage }}</mat-error
+    >
+  </mat-card-content>
+  <mat-card-content>
+    <form [formGroup]="accountInfoForm" (submit)="submitInfo()">
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="First name"
+            formControlName="first_name"
+          />
+          <mat-error *ngIf="accountInfoForm.controls.first_name.invalid">{{
+            getFirstNameErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Last name"
+            formControlName="last_name"
+          />
+          <mat-error *ngIf="accountInfoForm.controls.last_name.invalid">{{
+            getLastNameErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input
+            type="email"
+            matInput
+            placeholder="Email"
+            formControlName="email"
+          />
+          <mat-error *ngIf="accountInfoForm.controls.email.invalid">{{
+            getEmailErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+
+      <div class="button">
+        <button type="submit" mat-raised-button color="primary">Save</button>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-title class="pwForm">Change Password</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="accountPasswordForm" (submit)="submitPassword()">
+      <p>
+        <mat-form-field>
+          <input
+            type="password"
+            matInput
+            placeholder="Password"
+            formControlName="password"
+          />
+          <mat-error *ngIf="accountPasswordForm.controls.password.invalid">{{
+            getPasswordErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input
+            type="password"
+            matInput
+            placeholder="Confirm password"
+            formControlName="password_confirm"
+          />
+          <mat-error
+            *ngIf="this.accountPasswordForm.controls.password_confirm.invalid"
+            >{{ getPasswordErrorMessage() }}</mat-error
+          >
+        </mat-form-field>
+      </p>
+      <div class="button">
+        <button type="submit" mat-raised-button color="primary">Save</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<app-loader *ngIf="isLoading || !userInfo$"></app-loader>
